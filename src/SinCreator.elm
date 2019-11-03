@@ -140,7 +140,7 @@ init =
     , maxFrequency = 10
     , maxShift = 2 * Basics.pi
     , cosWaveLength = 200
-    , sinWaveLength = 100
+    , sinWaveLength = 200
     }
 
 
@@ -1154,6 +1154,7 @@ view model =
         yourCodeGroup =
             group
                 [ rect 200 100 |> outlined (solid 1) red |> makeTransparent 0.25 |> move ( 100, 20 )
+                , text "Your (copiable) code! " |> serif |> italic |> size 8 |> filled titleColour |> move ( 0 , 75 )
                 , copiable "--Add these new definitions to your code" |> move ( 0, 60 )
                 , copiable ("u = " ++ String.fromFloat model.uScale ++ "*" ++ textTrig model.trigCycleU ++ "(" ++ String.fromFloat model.uDilation ++ "*model.time+" ++ String.fromFloat model.uShift ++ ")") |> move ( 0, 50 )
                 , copiable "mySquare = square 15" |> move ( 0, 30 )
@@ -1166,7 +1167,7 @@ view model =
 
         transformsGraphicsGroup =
             group
-                [ rect 210 200 |> outlined (solid 1) red |> makeTransparent 0.25 |> move ( 45, 70 )
+                [ rect 190 180 |> outlined (solid 1) red |> makeTransparent 0.25 |> move ( 45, 70 )
                 , square 15 |> outlined (solid 1) (rgb model.r model.g model.b) |> applyTransforms model.uTransform model |> move ( 45, 60 )
                 , group
                     [ text (applyTransformsText model.uTransform) |> size 10 |> filled black |> move ( 4, 105 )
@@ -1260,8 +1261,8 @@ view model =
     in
     [ graphPaperCustom 10 1 (rgb 255 137 5) |> makeTransparent 0.25 -- axes and selected coordinate ticks
     , group
-        [ rect 1000 0.5 |> filled brown
-        , rect 0.5 1000 |> filled brown
+        [ rect 1000 0.5 |> filled brown |> move ( 0, 0 )
+        , rect 0.5 1000 |> filled brown |> move ( 0, 0 )
         , group (sinCurve model) |> move ( 0, 50 )
         , group (cosCurve model) |> move ( -50, 0 )
         , trigGraphAxis model |> move ( -185, 70 )
@@ -1269,19 +1270,20 @@ view model =
         ]
         |> move ( -140, 80 )
     , titlesText |> makeTransparent 0
-    , cosLabel |> move ( -127, 67 )
-    , transformsGraphicsGroup |> move ( 0, -100 )
+    , cosLabel |> move ( -107, 0 )
+    , transformsGraphicsGroup |> move ( -90, -80 )
 
     --, moveGraphicsX |> move ( 180, 220 )
     --, moveGraphicsY |> move ( 60, 50 )
     , group
         [ functionText model |> move ( 5, 150 )
         , setofTriangles |> move ( 0, 165 )
+        , functionLabel model |> move (-10, 185)
         ]
-        |> move ( -20, 15 )
+        |> move ( 200, -20 )
 
     --, rgbGraphics |> move ( 140, 90 )
-    , yourCodeGroup |> move ( 40, 110 )
+    , yourCodeGroup |> move ( 55, -140 )
     ]
 
 
@@ -1309,6 +1311,12 @@ functionText model =
         [ text (showDigits 2 model.uScale ++ "*" ++ textTrig model.trigCycleU ++ "(" ++ cosinString model) |> fixedwidth |> size 10 |> filled black |> move ( -120, 0 )
         ]
 
+functionLabel model = 
+    group
+        [ text "Amplitude" |> size 8 |> filled titleColour |> move ( -114, -5 ) 
+        , text "Frequency" |> size 8 |> filled titleColour |> move ( -70, -5 ) 
+        , text "Phase" |> size 8 |> filled titleColour |> move ( 17, -5 ) 
+        ]
 
 showDigits width x =
     "      " ++ String.fromFloat x |> String.right width
