@@ -1038,31 +1038,31 @@ applyTransforms tr model =
 applyTransformsText tr =
     case tr of
         MoveX ->
-            " move x "
+            " MoveX "
 
         MoveY ->
-            " move y "
+            " MoveY "
 
         MoveCircle ->
-            " move in a circle "
+            " MoveInACircle "
 
         ScaleU ->
-            " scale "
+            " Scale "
 
         URotate ->
-            " rotate "
+            " Rotate "
 
         ScaleX ->
-            " scaleX "
+            " ScaleX "
 
         ScaleY ->
-            " scaleY "
+            " ScaleY "
 
         MakeTransparent ->
-            " makeTransparent "
+            " MakeTransparent "
 
         EditableXSin ->
-            " editable Y Sin "
+            " EditableXSin "
 
 
 applyTransformsYourCode model tr =
@@ -1198,7 +1198,7 @@ view model =
                 [ rect 190 180 |> outlined (solid 1) red |> makeTransparent 0.25 |> move ( 45, 70 )
                 , square 15 |> outlined (solid 1) (rgb model.r model.g model.b) |> applyTransforms model.uTransform model |> move ( 45, 60 )
                 , group
-                    [ text (applyTransformsText model.uTransform) |> size 10 |> filled black |> move ( 4, 105 )
+                    [ text ("Current Transformation: " ++ applyTransformsText model.uTransform) |> size 10 |> filled black |> move ( -75, 100 )
                     , text ("2. Apply Transformations to your Square!") |> serif |> italic |> size 10 |> filled titleColour |> move (125, 100)
                     , text ("Scale") |> fixedwidth |> size 10 |> filled black |> move ( 125, 80 ) |> notifyTap (TransM (\m -> { m | uTransform = ScaleU }))
                     , text ("Rotate") |> fixedwidth |> size 10 |> filled black |> move ( 125, 70 ) |> notifyTap (TransM (\m -> { m | uTransform = URotate }))
@@ -1208,6 +1208,7 @@ view model =
                     , text ("MoveX") |> fixedwidth |> size 10 |> filled black |> move ( 125, 30 ) |> notifyTap (TransM (\m -> { m | uTransform = MoveX }))
                     , text ("MoveY") |> fixedwidth |> size 10 |> filled black |> move ( 125, 20 ) |> notifyTap (TransM (\m -> { m | uTransform = MoveY }))
                     , text ("MoveInACircle") |> fixedwidth |> size 10 |> filled black |> move ( 125, 10 ) |> notifyTap (TransM (\m -> { m | uTransform = MoveCircle }))
+                    , text ("EditableXSin") |> fixedwidth |> size 10 |> filled black |> move ( 125, 0 ) |> notifyTap (TransM (\m -> { m | uTransform = EditableXSin }))
                     --, triangle 8 |> filled (rgb 255 10 10) |> rotate (degrees 180) |> notifyTap UTransformsReverse |> move ( -70, 105 ) |> notifyLeave (TransM (\m -> { m | transformsLeftArrowTransp = 0.25 })) |> notifyEnter (TransM (\m -> { m | transformsLeftArrowTransp = 1 })) |> makeTransparent model.transformsLeftArrowTransp
                     --, triangle 8 |> filled (rgb 255 10 10) |> notifyTap UTransforms |> move ( 100, 105 ) |> notifyLeave (TransM (\m -> { m | transformsRightArrowTransp = 0.25 })) |> notifyEnter (TransM (\m -> { m | transformsRightArrowTransp = 1 })) |> makeTransparent model.transformsRightArrowTransp
 
