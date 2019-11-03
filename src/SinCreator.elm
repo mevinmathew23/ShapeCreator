@@ -1135,6 +1135,12 @@ view model =
             else
                 sin
 
+        cosTrigLabel =
+            if model.trigCycleU == Sin then
+                Cos
+            else
+                Sin
+
         tt str =
             str |> text |> serif |> italic |> size 10 |> filled titleColour
 
@@ -1250,7 +1256,7 @@ view model =
                 ]
 
         cosLabel =
-            text (String.fromFloat model.uScale ++ "* cos(" ++ cosinString model) |> fixedwidth |> size 8 |> filled black |> rotate (degrees 90) |> move ( -110, -82 ) |> notifyTap (TransM (\m -> { m | trigCycleU = Cos }))
+            text (showDigits 2 model.uScale ++ "*" ++ textTrig cosTrigLabel ++ "(" ++ cosinString model) |> fixedwidth |> size 8 |> filled black |> rotate (degrees 90) |> move ( -110, -82 ) |> notifyTap (TransM (\m -> { m | trigCycleU = cosTrigLabel }))
     in
     [ graphPaperCustom 10 1 (rgb 255 137 5) |> makeTransparent 0.25 -- axes and selected coordinate ticks
     , group
