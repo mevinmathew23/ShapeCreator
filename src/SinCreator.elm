@@ -24,11 +24,18 @@ FixForPrinciple3:
 
 -}
 
-{- template for your comment
+{- 
+
+Team Members:
+Mevin Mathew -->  400012057
+Shabana Dhayananth --> 400025944
 
 User: Who is your imagined user
+High school student that has just learned Trigonometric functions in school
+so they know the basics of function manipulation but is still confused about the effects.
 
 Activity: What activity is your user engaged in
+The user wants to learn how sine waves can be applied to shape transformations.
 
 Emotion: How does your user feel about this activity
 
@@ -36,9 +43,30 @@ Tasks: What tasks are part of this activity
 
 Typical Interaction: Describe a typical interaction of your user (the TAs will test this out, so include sufficient detail)
 
-Principle 1: First of Norman's principles and how it guided your design
+Principle 1: Signifier/Discoverability
+Unlike the other Shape Creator pages, this one lacked instructions or labels to inform the user 
+about the posisble actions that they could make. In order to make this page more discoverable,
+we added a few signifiers to guide the user. First we included some labels on the funtion to indicate
+what variables they were modifying and these labels were likely the ones they used in school when learning
+functions. We also added instruction headings to indicate the steps the user could take:
+     1. Manipulate the function!
+     2. Choose an action!
+     3. Your copiable code!
+For section 2, we felt that listing all the possible actions on the shape would be more beneficial as it 
+would fit the layout of the other Shape Creator tabs and therefore allow the user to use their existing 
+knowledge about signifiers used in Shape Creator on this page as well.
+
+- labels on function
+- instructions
+- list of square transforms
+- sin cos switch ** 
+- layout change
+
 
 Principle 2: Second of Norman's principles and how it guided your design.
+Constriants? 
+    - on padding?
+    - constrain scale to absolute number?
 
 -}
 
@@ -1154,13 +1182,13 @@ view model =
         yourCodeGroup =
             group
                 [ rect 200 100 |> outlined (solid 1) red |> makeTransparent 0.25 |> move ( 100, 20 )
-                , text "Your (copiable) code! " |> serif |> italic |> size 8 |> filled titleColour |> move ( 0 , 75 )
+                , text "3. Your (copiable) code! " |> serif |> italic |> size 10 |> filled titleColour |> move ( 0 , 75 )
                 , copiable "--Add these new definitions to your code" |> move ( 0, 60 )
                 , copiable ("u = " ++ String.fromFloat model.uScale ++ "*" ++ textTrig model.trigCycleU ++ "(" ++ String.fromFloat model.uDilation ++ "*model.time+" ++ String.fromFloat model.uShift ++ ")") |> move ( 0, 50 )
                 , copiable "mySquare = square 15" |> move ( 0, 30 )
-                , copiable ("  |> outlined (solid 0.25) rgb (" ++ String.fromFloat model.rScale ++ "*" ++ showFun model.rFun u v ++ " " ++ String.fromFloat model.gScale ++ "*" ++ showFun model.gFun u v ++ " " ++ String.fromFloat model.bScale ++ "*" ++ showFun model.bFun u v ++ ")") |> move ( 35, 20 )
-                , copiable ("  " ++ applyTransformsYourCode model model.uTransform) |> move ( 35, 10 )
-                , copiable ("  |> move(" ++ moveText model.moveX1 ++ "," ++ moveText model.moveY1 ++ ")") |> move ( 35, 0 )
+                , copiable ("  |> outlined (solid 0.25) rgb (" ++ String.fromFloat model.rScale ++ "*" ++ showFun model.rFun u v ++ " " ++ String.fromFloat model.gScale ++ "*" ++ showFun model.gFun u v ++ " " ++ String.fromFloat model.bScale ++ "*" ++ showFun model.bFun u v ++ ")") |> move ( 10, 20 )
+                , copiable ("  " ++ applyTransformsYourCode model model.uTransform) |> move ( 10, 10 )
+                , copiable ("  |> move(" ++ moveText model.moveX1 ++ "," ++ moveText model.moveY1 ++ ")") |> move ( 10, 0 )
                 , copiable "--Add the following code to your shapes:" |> move ( 0, -10 )
                 , copiable "mySquare" |> move ( 10, -20 )
                 ]
@@ -1270,7 +1298,7 @@ view model =
         ]
         |> move ( -140, 80 )
     , titlesText |> makeTransparent 0
-    , cosLabel |> move ( -107, 0 )
+    , cosLabel |> move ( -125, 0 )
     , transformsGraphicsGroup |> move ( -90, -80 )
 
     --, moveGraphicsX |> move ( 180, 220 )
@@ -1313,9 +1341,10 @@ functionText model =
 
 functionLabel model = 
     group
-        [ text "Amplitude" |> size 8 |> filled titleColour |> move ( -114, -5 ) 
-        , text "Frequency" |> size 8 |> filled titleColour |> move ( -70, -5 ) 
-        , text "Phase" |> size 8 |> filled titleColour |> move ( 17, -5 ) 
+        [ text "1. Manipulate the function! " |> serif |> italic |> size 10 |> filled titleColour |> move ( -118 , 5 )
+        , text "Amplitude" |> size 8 |> filled black |> move ( -116, -5 ) 
+        , text "Frequency" |> size 8 |> filled black |> move ( -72, -5 ) 
+        , text "Phase" |> size 8 |> filled black |> move ( 17, -5 ) 
         ]
 
 showDigits width x =
