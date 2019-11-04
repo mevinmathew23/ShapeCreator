@@ -1432,36 +1432,9 @@ copiable2 str =
     str |> text |> selectable |> fixedwidth |> size 9 |> filled black
 
 transformTime model t w h uTransform =
-    if 
-        case t of
-            ScaleU ->
-                model.hasScaleU
-            
-            URotate ->
-                model.hasURotate
-            
-            ScaleX ->
-                model.hasScaleX
-            
-            ScaleY ->
-                model.hasScaleY
-            
-            MakeTransparent ->
-                model.hasMakeTransparent
-            
-            MoveX -> 
-                model.hasMoveX
-            
-            MoveY -> 
-                model.hasMoveY
-            
-            MoveCircle -> 
-                model.hasMoveCircle
-            
-            EditableXSin ->
-                model.hasEditableXSin
+    if t == model.uTransform
     then
-        group [ rect w h |> filled (rgba 117 184 135 (0.6 + 0.4 * sin (5 * model.currentTime - 0.5))), uTransform ]
+        group [ rect w h |> filled (rgba 117 184 135 (0.6 + 0.4 * sin (5 * model.currentTime - 0.5))) |> move (250, 138), uTransform ]
 
     else
         uTransform
