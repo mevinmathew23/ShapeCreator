@@ -1243,7 +1243,7 @@ view model =
                                 |> fixedwidth
                                 |> size 10
                                 |> filled black
-                                -- |> notifyTap (Toggle ss)
+                                |> notifyTap (TransM (\m -> { m | uTransform = ss } ))
                                 |> move ( -68, -2.5 )
                                 -- |> transformTime model ss 140 10
                                 |> move ( -35, y )
