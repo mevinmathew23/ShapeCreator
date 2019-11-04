@@ -44,29 +44,27 @@ Tasks: What tasks are part of this activity
 Typical Interaction: Describe a typical interaction of your user (the TAs will test this out, so include sufficient detail)
 
 Principle 1: Signifier/Discoverability
-Unlike the other Shape Creator pages, this one lacked instructions or labels to inform the user 
+Unlike the other Shape Creator pages, SinCreator lacked instructions or labels to inform the user 
 about the posisble actions that they could make. In order to make this page more discoverable,
-we added a few signifiers to guide the user. First we included some labels on the funtion to indicate
-what variables they were modifying and these labels were likely the ones they used in school when learning
-functions. We also added instruction headings to indicate the steps the user could take:
+we added a few signifiers to guide the user. First we included some labels (amplitude, frequency, phase) 
+on the funtion to indicate what variables were could be modified. These labels were likely the ones 
+that the user used in school while learning functions so it will be easy for them to apply their existing 
+knowledge to the simulation. 
+We also added instruction headings to indicate the steps the user could take:
      1. Manipulate the function!
      2. Choose an action!
      3. Your copiable code!
-For section 2, we felt that listing all the possible actions on the shape would be more beneficial as it 
-would fit the layout of the other Shape Creator tabs and therefore allow the user to use their existing 
-knowledge about signifiers used in Shape Creator on this page as well.
+to be consistent with the other pages. And lastly we added a "Click here" sign to indicate that the user 
+could switch the sin/cos equation on the x to y axis and back. The ability to switch back to sin was also added
+as previously, clicking would only allow the user to switch both functions to cos.
 
-- labels on function
-- instructions
-- list of square transforms
-- sin cos switch ** 
-- layout change
-
-
-Principle 2: Second of Norman's principles and how it guided your design.
-Constriants? 
-    - on padding?
-    - constrain scale to absolute number?
+Principle 2: Conceptual Model? Mapping?
+We felt that SinCreator page differed a lot from the other ShapeCreator pages. Besides the lack of instructions, 
+the layout was different and a different tool style was used to chose the transform applied to the square 
+(left/right scroll arrows). As such, we decided change the layout of the page to move the 'Your code' section 
+down and add the manipulation section above it. Also, for section 2, we felt that listing all the possible 
+transforms on the shape would be more beneficial as it would fit the organization of the other Shape Creator tabs 
+better and therefore allow the user to use their existing knowledge about the used in Shape Creator on this page as well.
 
 -}
 
@@ -1195,7 +1193,7 @@ view model =
             group
                 [ rect 160 150 |> outlined (solid 1) red |> makeTransparent 0.25 |> move ( 30, 70 )
                 , square 15 |> outlined (solid 1) (rgb model.r model.g model.b) |> applyTransforms model.uTransform model |> move ( 30, 70 )
-                , text ("Your Square!") |> serif |> italic |> size 10 |> filled titleColour |> move (15, 150)
+                , text ("Your Square!") |> serif |> italic |> size 10 |> filled titleColour |> move (10, 150)
                 --, text ("Current Transformation: " ++ applyTransformsText model.uTransform) |> size 10 |> filled black |> move ( -50, 150 )
                 , text ("2. Apply Transformations to your Square!") |> serif |> italic |> size 10 |> filled titleColour |> move (150, 150)
                 , group <|
@@ -1316,9 +1314,9 @@ view model =
     --, moveGraphicsX |> move ( 180, 220 )
     --, moveGraphicsY |> move ( 60, 50 )
     , group
-        [ functionText model |> move ( 5, 150 )
-        , setofTriangles |> move ( 0, 165 )
-        , functionLabel model |> move (-10, 185)
+        [ functionText model |> move ( -5, 150 )
+        , setofTriangles |> move ( -10, 165 )
+        , functionLabel model |> move (-20, 185)
         ]
         |> move ( 200, -20 )
 
