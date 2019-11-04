@@ -169,15 +169,6 @@ init =
     , maxShift = 2 * Basics.pi
     , cosWaveLength = 200
     , sinWaveLength = 200
-    , hasScaleU = True
-    , hasURotate = False
-    , hasScaleX = False
-    , hasScaleY = False
-    , hasMakeTransparent = False
-    , hasMoveX = False
-    , hasMoveY = False
-    , hasMoveCircle = False
-    , hasEditableXSin = False
     }
 
 
@@ -219,7 +210,6 @@ type Msg m
     | BScaleMinus
     | ButtonDown ButtonDir
     | MouseUp
-    | Toggle Transforms
 
 
 type Notifications
@@ -818,34 +808,6 @@ update msg model =
 
         MouseUp ->
             { model | currentButton = None }
-        
-        Toggle ScaleU ->
-            {model | hasScaleU = not model.hasScaleU }
-
-        Toggle URotate ->
-            {model | hasURotate = not model.hasURotate }
-
-        Toggle ScaleX ->
-            {model | hasScaleX = not model.hasScaleX }
-
-        Toggle ScaleY ->
-            {model | hasScaleY = not model.hasScaleY }
-        
-        Toggle MakeTransparent ->
-            { model | hasMakeTransparent = not model.hasMakeTransparent }
-        
-        Toggle MoveX ->
-            { model | hasMoveX = not model.hasMoveX }
-        
-        Toggle MoveY ->
-            { model | hasMoveY = not model.hasMoveY }
-        
-        Toggle MoveCircle ->
-            { model | hasMoveCircle = not model.hasMoveCircle }
-        
-        Toggle EditableXSin ->
-            { model | hasEditableXSin = not model.hasEditableXSin }
-
 
 
 -- make the Collage fit in VGA screen minus menu bars, for Chromebooks and iPads
@@ -1246,36 +1208,12 @@ view model =
                                 |> filled black
                                 |> notifyTap (TransM (\m -> { m | uTransform = ss } ))
                                 |> move ( 185, 135 )
-                                |> transformTime model ss 140 10
+                                |> transformTime model ss 100 10
                                 |> move ( -35, y )
                         )
                 [ ScaleU, URotate, ScaleX, ScaleY, MakeTransparent, MoveX, MoveY, MoveCircle, EditableXSin ]
                 (List.map (\x -> -10 * Basics.toFloat x) (List.range 0 20))
                 ]
-
-        {- transformsGraphicsGroup =
-            group
-                [ rect 190 180 |> outlined (solid 1) red |> makeTransparent 0.25 |> move ( 45, 70 )
-                , square 15 |> outlined (solid 1) (rgb model.r model.g model.b) |> applyTransforms model.uTransform model |> move ( 45, 60 )
-                , group
-                    [ text ("Current Transformation: " ++ applyTransformsText model.uTransform) |> size 10 |> filled black |> move ( -75, 100 )
-                    , text ("2. Apply Transformations to your Square!") |> serif |> italic |> size 10 |> filled titleColour |> move (125, 100)
-                    , text ("Scale") |> fixedwidth |> size 10 |> filled black |> move ( 125, 80 ) |> notifyTap (TransM (\m -> { m | uTransform = ScaleU }))
-                    , text ("Rotate") |> fixedwidth |> size 10 |> filled black |> move ( 125, 70 ) |> notifyTap (TransM (\m -> { m | uTransform = URotate }))
-                    , text ("ScaleX") |> fixedwidth |> size 10 |> filled black |> move ( 125, 60 ) |> notifyTap (TransM (\m -> { m | uTransform = ScaleX }))
-                    , text ("ScaleY") |> fixedwidth |> size 10 |> filled black |> move ( 125, 50 ) |> notifyTap (TransM (\m -> { m | uTransform = ScaleY }))
-                    , text ("MakeTransparent") |> fixedwidth |> size 10 |> filled black |> move ( 125, 40 ) |> notifyTap (TransM (\m -> { m | uTransform = MakeTransparent }))
-                    , text ("MoveX") |> fixedwidth |> size 10 |> filled black |> move ( 125, 30 ) |> notifyTap (TransM (\m -> { m | uTransform = MoveX }))
-                    , text ("MoveY") |> fixedwidth |> size 10 |> filled black |> move ( 125, 20 ) |> notifyTap (TransM (\m -> { m | uTransform = MoveY }))
-                    , text ("MoveInACircle") |> fixedwidth |> size 10 |> filled black |> move ( 125, 10 ) |> notifyTap (TransM (\m -> { m | uTransform = MoveCircle }))
-                    , text ("EditableXSin") |> fixedwidth |> size 10 |> filled black |> move ( 125, 0 ) |> notifyTap (TransM (\m -> { m | uTransform = EditableXSin }))
-                    --, triangle 8 |> filled (rgb 255 10 10) |> rotate (degrees 180) |> notifyTap UTransformsReverse |> move ( -70, 105 ) |> notifyLeave (TransM (\m -> { m | transformsLeftArrowTransp = 0.25 })) |> notifyEnter (TransM (\m -> { m | transformsLeftArrowTransp = 1 })) |> makeTransparent model.transformsLeftArrowTransp
-                    --, triangle 8 |> filled (rgb 255 10 10) |> notifyTap UTransforms |> move ( 100, 105 ) |> notifyLeave (TransM (\m -> { m | transformsRightArrowTransp = 0.25 })) |> notifyEnter (TransM (\m -> { m | transformsRightArrowTransp = 1 })) |> makeTransparent model.transformsRightArrowTransp
-
-                    --, text (moveText model.transformFun) |> size 10 |> filled black |> notifyTap TransformsFunctionChange |> move ( x1, 105 ) |> notifyLeave (TransM (\m -> { m | transformsNumTransp = 0.25 })) |> notifyEnter (TransM (\m -> { m | transformsNumTransp = 1 })) |> makeTransparent model.transformsNumTransp
-                    ]
-                    |> move ( 30, 50 )
-                ] -}
 
         {-
            moveGraphicsY =
@@ -1355,7 +1293,11 @@ view model =
                 ]
 
         cosLabel =
-            text (showDigits 2 model.uScale ++ "*" ++ textTrig cosTrigLabel ++ "(" ++ cosinString model) |> fixedwidth |> size 8 |> filled black |> rotate (degrees 90) |> move ( -110, -82 ) |> notifyTap (TransM (\m -> { m | trigCycleU = cosTrigLabel }))
+            group [ text (showDigits 2 model.uScale ++ "*" ++ textTrig cosTrigLabel ++ "(" ++ cosinString model) |> fixedwidth |> size 8 |> filled black |> rotate (degrees 90) |> move ( -110, -82 ) |> notifyTap (TransM (\m -> { m | trigCycleU = cosTrigLabel }))
+                  , text "click here!" |> fixedwidth |> size 6 |> filled (rgba 255 0 0 0.6) |> rotate (degrees 90) |> move ( -125, -75 )
+                  , triangle 3 |> filled red |> move ( -119, -63 )
+                  , rect 5 1 |> filled red |> move ( -122, -63 )
+            ]
     in
     [ graphPaperCustom 10 1 (rgb 255 137 5) |> makeTransparent 0.25 -- axes and selected coordinate ticks
     , group
@@ -1435,7 +1377,7 @@ copiable2 str =
 transformTime model t w h uTransform =
     if t == model.uTransform
     then
-        group [ rect w h |> filled (rgba 255 137 5 (0.6 + 0.4 * sin (5 * model.currentTime - 0.5))) |> move (250, 138), uTransform ]
+        group [ rect w h |> filled (rgba 255 0 0 (0.6 + 0.4 * sin (5 * model.currentTime - 0.5))) |> move (230, 138), uTransform ]
 
     else
         uTransform
