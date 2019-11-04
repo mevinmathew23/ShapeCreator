@@ -1233,8 +1233,8 @@ view model =
             group
                 [ rect 190 180 |> outlined (solid 1) red |> makeTransparent 0.25 |> move ( 45, 70 )
                 , square 15 |> outlined (solid 1) (rgb model.r model.g model.b) |> applyTransforms model.uTransform model |> move ( 45, 60 )
-                , text ("Current Transformation: " ++ applyTransformsText model.uTransform) |> size 10 |> filled black |> move ( -75, 100 )
-                , text ("2. Apply Transformations to your Square!") |> serif |> italic |> size 10 |> filled titleColour |> move (125, 100)
+                , text ("Current Transformation: " ++ applyTransformsText model.uTransform) |> size 10 |> filled black |> move ( -50, 150 )
+                , text ("2. Apply Transformations to your Square!") |> serif |> italic |> size 10 |> filled titleColour |> move (150, 150)
                 , group <|
                     List.map2
                         (\ss y ->
@@ -1244,7 +1244,7 @@ view model =
                                 |> size 10
                                 |> filled black
                                 |> notifyTap (TransM (\m -> { m | uTransform = ss } ))
-                                |> move ( -68, -2.5 )
+                                |> move ( 185, 135 )
                                 -- |> transformTime model ss 140 10
                                 |> move ( -35, y )
                         )
