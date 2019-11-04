@@ -434,10 +434,24 @@ update msg model =
                 , uShift =
                     case model.currentButton of
                         ShiftUp ->
-                            model.uShift + curveX model.buttonDownTime
+                            if model.uShift <= model.maxShift then
+                                model.uShift + curveX model.buttonDownTime
+
+                            else if model.uShift > model.maxShift then
+                                model.uShift + 0
+
+                            else
+                                model.uShift
 
                         ShiftDown ->
-                            model.uShift - curveX model.buttonDownTime
+                            if model.uShift > -model.maxShift then
+                                model.uShift - curveX model.buttonDownTime
+                            
+                            else if model.uShift < -model.maxShift then
+                                -model.maxShift
+
+                            else
+                                model.uShift
 
                         _ ->
                             model.uShift
@@ -1132,7 +1146,7 @@ cosinString model =
             else
                 "+" ++ showDigits 4 (model.uShift / 8 * 2)
     in
-    showDigits 2 model.uDilation ++ "*model.time" ++ fraction ++ "*Pi)"
+    showDigits 3 model.uDilation ++ "*model.time" ++ fraction ++ "*Pi)"
 
 
 view model =
@@ -1295,7 +1309,7 @@ view model =
                 ]
 
         cosLabel =
-            text (showDigits 2 model.uScale ++ "*" ++ textTrig cosTrigLabel ++ "(" ++ cosinString model) |> fixedwidth |> size 8 |> filled black |> rotate (degrees 90) |> move ( -110, -82 ) |> notifyTap (TransM (\m -> { m | trigCycleU = cosTrigLabel }))
+            text (showDigits 3 model.uScale ++ "*" ++ textTrig cosTrigLabel ++ "(" ++ cosinString model) |> fixedwidth |> size 8 |> filled black |> rotate (degrees 90) |> move ( -110, -82 ) |> notifyTap (TransM (\m -> { m | trigCycleU = cosTrigLabel }))
     in
     [ graphPaperCustom 10 1 (rgb 255 137 5) |> makeTransparent 0.25 -- axes and selected coordinate ticks
     , group
@@ -1346,7 +1360,7 @@ trigGraphAxis model =
 
 functionText model =
     group
-        [ text (showDigits 2 model.uScale ++ "*" ++ textTrig model.trigCycleU ++ "(" ++ cosinString model) |> fixedwidth |> size 10 |> filled black |> move ( -120, 0 )
+        [ text (showDigits 3 model.uScale ++ "*" ++ textTrig model.trigCycleU ++ "(" ++ cosinString model) |> fixedwidth |> size 10 |> filled black |> move ( -120, 0 )
         ]
 
 functionLabel model = 
