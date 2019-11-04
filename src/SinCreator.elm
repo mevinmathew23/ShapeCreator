@@ -1217,23 +1217,23 @@ view model =
 
         yourCodeGroup =
             group
-                [ rect 200 100 |> outlined (solid 1) red |> makeTransparent 0.25 |> move ( 100, 20 )
-                , text "3. Your (copiable) code! " |> serif |> italic |> size 10 |> filled titleColour |> move ( 0 , 75 )
-                , copiable "--Add these new definitions to your code" |> move ( 0, 60 )
-                , copiable ("u = " ++ String.fromFloat model.uScale ++ "*" ++ textTrig model.trigCycleU ++ "(" ++ String.fromFloat model.uDilation ++ "*model.time+" ++ String.fromFloat model.uShift ++ ")") |> move ( 0, 50 )
-                , copiable "mySquare = square 15" |> move ( 0, 30 )
-                , copiable ("  |> outlined (solid 0.25) rgb (" ++ String.fromFloat model.rScale ++ "*" ++ showFun model.rFun u v ++ " " ++ String.fromFloat model.gScale ++ "*" ++ showFun model.gFun u v ++ " " ++ String.fromFloat model.bScale ++ "*" ++ showFun model.bFun u v ++ ")") |> move ( 10, 20 )
-                , copiable ("  " ++ applyTransformsYourCode model model.uTransform) |> move ( 10, 10 )
-                , copiable ("  |> move(" ++ moveText model.moveX1 ++ "," ++ moveText model.moveY1 ++ ")") |> move ( 10, 0 )
-                , copiable "--Add the following code to your shapes:" |> move ( 0, -10 )
-                , copiable "mySquare" |> move ( 10, -20 )
+                [ rect 225 85 |> outlined (solid 1) red |> makeTransparent 0.25 |> move ( 80, 15 )
+                , text "3. Your (copiable) code! " |> serif |> italic |> size 10 |> filled titleColour |> move ( 5 , 65 )
+                , copiable "--Add these new definitions to your code" |> move ( -25, 50 )
+                , copiable ("u = " ++ String.fromFloat model.uScale ++ "*" ++ textTrig model.trigCycleU ++ "(" ++ String.fromFloat model.uDilation ++ "*model.time+" ++ String.fromFloat model.uShift ++ ")") |> move ( -25, 40 )
+                , copiable "mySquare = square 15" |> move ( -25, 30 )
+                , copiable ("  |> outlined (solid 0.25) rgb (" ++ String.fromFloat model.rScale ++ "*" ++ showFun model.rFun u v ++ " " ++ String.fromFloat model.gScale ++ "*" ++ showFun model.gFun u v ++ " " ++ String.fromFloat model.bScale ++ "*" ++ showFun model.bFun u v ++ ")") |> move ( -15, 20 )
+                , copiable ("  " ++ applyTransformsYourCode model model.uTransform) |> move ( -15, 10 )
+                , copiable ("  |> move(" ++ moveText model.moveX1 ++ "," ++ moveText model.moveY1 ++ ")") |> move ( -15, 0 )
+                , copiable "--Add the following code to your shapes:" |> move ( -25, -10 )
+                , copiable "mySquare" |> move ( -15, -20 )
                 ]
 
         transformsGraphicsGroup =
             group
-                [ rect 190 180 |> outlined (solid 1) red |> makeTransparent 0.25 |> move ( 45, 70 )
-                , square 15 |> outlined (solid 1) (rgb model.r model.g model.b) |> applyTransforms model.uTransform model |> move ( 45, 60 )
-                , text ("Your Square!") |> serif |> italic |> size 10 |> filled titleColour |> move (25, 150)
+                [ rect 160 150 |> outlined (solid 1) red |> makeTransparent 0.25 |> move ( 30, 70 )
+                , square 15 |> outlined (solid 1) (rgb model.r model.g model.b) |> applyTransforms model.uTransform model |> move ( 30, 70 )
+                , text ("Your Square!") |> serif |> italic |> size 10 |> filled titleColour |> move (15, 150)
                 --, text ("Current Transformation: " ++ applyTransformsText model.uTransform) |> size 10 |> filled black |> move ( -50, 150 )
                 , text ("2. Apply Transformations to your Square!") |> serif |> italic |> size 10 |> filled titleColour |> move (150, 150)
                 , group <|
