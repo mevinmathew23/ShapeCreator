@@ -169,6 +169,15 @@ init =
     , maxShift = 2 * Basics.pi
     , cosWaveLength = 200
     , sinWaveLength = 200
+    , hasScaleU = True
+    , hasURotate = False
+    , hasScaleX = False
+    , hasScaleY = False
+    , hasMakeTransparent = False
+    , hasMoveX = False
+    , hasMoveY = False
+    , hasMoveCircle = False
+    , hasEditableXSin = False
     }
 
 
@@ -210,6 +219,7 @@ type Msg m
     | BScaleMinus
     | ButtonDown ButtonDir
     | MouseUp
+    | Toggle Transforms
 
 
 type Notifications
@@ -808,6 +818,33 @@ update msg model =
 
         MouseUp ->
             { model | currentButton = None }
+        
+        Toggle ScaleU ->
+            {model | hasScaleU = not model.hasScaleU }
+
+        Toggle URotate ->
+            {model | hasURotate = not model.hasURotate }
+
+        Toggle ScaleX ->
+            {model | hasScaleX = not model.hasScaleX }
+
+        Toggle ScaleY ->
+            {model | hasScaleY = not model.hasScaleY }
+        
+        Toggle MakeTransparent ->
+            { model | hasMakeTransparent = not model.hasMakeTransparent }
+        
+        Toggle MoveX ->
+            { model | hasMoveX = not model.hasMoveX }
+        
+        Toggle MoveY ->
+            { model | hasMoveY = not model.hasMoveY }
+        
+        Toggle MoveCircle ->
+            { model | hasMoveCircle = not model.hasMoveCircle }
+        
+        Toggle EditableXSin ->
+            { model | hasEditableXSin = not model.hasEditableXSin }
 
 
 
@@ -1064,7 +1101,6 @@ applyTransformsText tr =
         EditableXSin ->
             " EditableXSin "
 
-
 applyTransformsYourCode model tr =
     case tr of
         MoveX ->
@@ -1197,6 +1233,29 @@ view model =
             group
                 [ rect 190 180 |> outlined (solid 1) red |> makeTransparent 0.25 |> move ( 45, 70 )
                 , square 15 |> outlined (solid 1) (rgb model.r model.g model.b) |> applyTransforms model.uTransform model |> move ( 45, 60 )
+                , text ("Current Transformation: " ++ applyTransformsText model.uTransform) |> size 10 |> filled black |> move ( -75, 100 )
+                , text ("2. Apply Transformations to your Square!") |> serif |> italic |> size 10 |> filled titleColour |> move (125, 100)
+                , group <|
+                    List.map2
+                        (\ss y ->
+                            applyTransformsText ss
+                                |> text
+                                |> fixedwidth
+                                |> size 10
+                                |> filled black
+                                -- |> notifyTap (Toggle ss)
+                                |> move ( -68, -2.5 )
+                                -- |> transformTime model ss 140 10
+                                |> move ( -35, y )
+                        )
+                [ ScaleU, URotate, ScaleX, ScaleY, MakeTransparent, MoveX, MoveY, MoveCircle, EditableXSin ]
+                (List.map (\x -> -10 * Basics.toFloat x) (List.range 0 20))
+                ]
+
+        {- transformsGraphicsGroup =
+            group
+                [ rect 190 180 |> outlined (solid 1) red |> makeTransparent 0.25 |> move ( 45, 70 )
+                , square 15 |> outlined (solid 1) (rgb model.r model.g model.b) |> applyTransforms model.uTransform model |> move ( 45, 60 )
                 , group
                     [ text ("Current Transformation: " ++ applyTransformsText model.uTransform) |> size 10 |> filled black |> move ( -75, 100 )
                     , text ("2. Apply Transformations to your Square!") |> serif |> italic |> size 10 |> filled titleColour |> move (125, 100)
@@ -1215,7 +1274,7 @@ view model =
                     --, text (moveText model.transformFun) |> size 10 |> filled black |> notifyTap TransformsFunctionChange |> move ( x1, 105 ) |> notifyLeave (TransM (\m -> { m | transformsNumTransp = 0.25 })) |> notifyEnter (TransM (\m -> { m | transformsNumTransp = 1 })) |> makeTransparent model.transformsNumTransp
                     ]
                     |> move ( 30, 50 )
-                ]
+                ] -}
 
         {-
            moveGraphicsY =
@@ -1372,9 +1431,37 @@ copiable str =
 copiable2 str =
     str |> text |> selectable |> fixedwidth |> size 9 |> filled black
 
-transformTime model ss w h shape =
-    if ss == model.draw then
-        group [ rect w h |> filled (rgba 117 184 135 (0.6 + 0.4 * sin (5 * model.time - 0.5))), shape ]
+transformTime model t w h uTransform =
+    if 
+        case t of
+            ScaleU ->
+                model.hasScaleU
+            
+            URotate ->
+                model.hasURotate
+            
+            ScaleX ->
+                model.hasScaleX
+            
+            ScaleY ->
+                model.hasScaleY
+            
+            MakeTransparent ->
+                model.hasMakeTransparent
+            
+            MoveX -> 
+                model.hasMoveX
+            
+            MoveY -> 
+                model.hasMoveY
+            
+            MoveCircle -> 
+                model.hasMoveCircle
+            
+            EditableXSin ->
+                model.hasEditableXSin
+    then
+        group [ rect w h |> filled (rgba 117 184 135 (0.6 + 0.4 * sin (5 * model.time - 0.5))), uTransform ]
 
     else
-        shape
+        uTransform
