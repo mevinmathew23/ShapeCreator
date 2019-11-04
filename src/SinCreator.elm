@@ -1245,7 +1245,7 @@ view model =
                                 |> filled black
                                 |> notifyTap (TransM (\m -> { m | uTransform = ss } ))
                                 |> move ( 185, 135 )
-                                -- |> transformTime model ss 140 10
+                                |> transformTime model ss 140 10
                                 |> move ( -35, y )
                         )
                 [ ScaleU, URotate, ScaleX, ScaleY, MakeTransparent, MoveX, MoveY, MoveCircle, EditableXSin ]
@@ -1461,7 +1461,7 @@ transformTime model t w h uTransform =
             EditableXSin ->
                 model.hasEditableXSin
     then
-        group [ rect w h |> filled (rgba 117 184 135 (0.6 + 0.4 * sin (5 * model.time - 0.5))), uTransform ]
+        group [ rect w h |> filled (rgba 117 184 135 (0.6 + 0.4 * sin (5 * model.currentTime - 0.5))), uTransform ]
 
     else
         uTransform
