@@ -1233,7 +1233,8 @@ view model =
             group
                 [ rect 190 180 |> outlined (solid 1) red |> makeTransparent 0.25 |> move ( 45, 70 )
                 , square 15 |> outlined (solid 1) (rgb model.r model.g model.b) |> applyTransforms model.uTransform model |> move ( 45, 60 )
-                , text ("Current Transformation: " ++ applyTransformsText model.uTransform) |> size 10 |> filled black |> move ( -50, 150 )
+                , text ("Your Square!") |> serif |> italic |> size 10 |> filled titleColour |> move (25, 150)
+                --, text ("Current Transformation: " ++ applyTransformsText model.uTransform) |> size 10 |> filled black |> move ( -50, 150 )
                 , text ("2. Apply Transformations to your Square!") |> serif |> italic |> size 10 |> filled titleColour |> move (150, 150)
                 , group <|
                     List.map2
@@ -1434,7 +1435,7 @@ copiable2 str =
 transformTime model t w h uTransform =
     if t == model.uTransform
     then
-        group [ rect w h |> filled (rgba 117 184 135 (0.6 + 0.4 * sin (5 * model.currentTime - 0.5))) |> move (250, 138), uTransform ]
+        group [ rect w h |> filled (rgba 255 137 5 (0.6 + 0.4 * sin (5 * model.currentTime - 0.5))) |> move (250, 138), uTransform ]
 
     else
         uTransform
