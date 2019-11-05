@@ -1,58 +1,37 @@
 module SinCreator exposing (..)
 
-{-
-
-Team Member Names and Student Numbers: 
-
-NormanPrinciple1:
-
-ProblemWithPrinciple1:
-
-FixForPrinciple1:
-
-NormanPrinciple2:
-
-ProblemWithPrinciple2:
-
-FixForPrinciple2:
-
-NormanPrinciple3:
-
-ProblemWithPrinciple3:
-
-FixForPrinciple3:
-
--}
-
 {- 
 
 Team Members:
 Mevin Mathew -->  400012057
 Shabana Dhayananth --> 400025944
 
-User: Who is your imagined user
-High school student that has just learned Trigonometric functions in school
-so they know the basics of function manipulation but is still confused about the effects.
+User: Our user, Toby, is a grade 5 student that has used Elm a few times before
+in a previous year McMaster Outreach program but is still inexperienced.
 
-Activity: What activity is your user engaged in
-The user wants to learn how sine waves can be applied to shape transformations.
+Activity: Toby wants to design a simple game for this years McMaster Start Coding initiative.
 
-Emotion: How does your user feel about this activity
+Emotion: Toby really wants impress his friends by creating a game but he feels lost as
+he completely underestimated how difficult it would be to create it with his limited knowledge in Elm.
 
-Tasks: What tasks are part of this activity
+Tasks: The elements Toby wants to add to his game are a character, obstacles for the
+character to interact with and an overall winning animation.
 
-Typical Interaction: Describe a typical interaction of your user (the TAs will test this out, so include sufficient detail)
+Typical Interaction: Toby realizes that he can use the Shape Creator functions to design his character, 
+but he wants the obstacles his character interacts with to move so that the game can be more exciting for 
+the player. In order to add animations to his obstacles, he's decided to use the WaveCreator page on Shape
+Creator by opening the ShapeCreator application and select the WaveCreator tab. From there, he will see 
+step 1 is to "Manipulate the Function", and use the three sets of arrows to increase or decrease the Amplitude, 
+Frequency, and Phase of the function respectively. Next, he will identify that step 2 is to "Apply Transforms 
+to your Square." At this point, he will select one of 9 applicable transforms for his square (Scale is the 
+default shown by flashing). Lastly, the Toby will copy his created code from step 3 the "Your (copiable) Code!" 
+section and put his generated code into his Elm program. Toby can also choose to switch the main function from 
+Sin to Cos by selecting the rotated function on the left axis. This will automatically switch the main function 
+from Sin to Cos, and change the vertical function from Cos to Sin. Toby also realizes he can click this vertical 
+function whenever he needs to change the main function from Cos to Sin and visa-versa.
 
-A user will open the ShapeCreator application and select the WaveCreator tab. From there, they will see step 1 is to "Manipulate the Function",
-and use the three sets of arrows to increase or decrease the Amplitude, Frequency, and Phase of the function respectively. Next, they will identify that
-step 2 is to "Apply Transforms to your Square." At this point, they will select one of 9 applicable transforms for their square (Scale is the 
-default shown by flashing). Lastly, the user will copy their created code from the "Your (copiable) Code!" section and put their generated code into
-their Elm program. A user may also choose to switch the main function from Sin to Cos by selecting the rotated function on the left axis. This will
-automatically switch the main function from Sin to Cos, and change the vertical function from Cos to Sin. The user may click this vertical function
-whenever they need to change the main function between Sin and Cos.
-
-Principle 1: Signifier/Discoverability
-Unlike the other Shape Creator pages, SinCreator lacked instructions or labels to inform the user 
+Principle 1: Signifier
+Unlike the other Shape Creator pages, Wave Creator lacked instructions or labels to inform the user 
 about the posisble actions that they could make. In order to make this page more discoverable,
 we added a few signifiers to guide the user. First we included some labels (amplitude, frequency, phase) 
 on the funtion to indicate what variables were could be modified. These labels were likely the ones 
@@ -66,14 +45,15 @@ to be consistent with the other pages. And lastly we added a "Click here" sign t
 could switch the sin/cos equation on the x to y axis and back. The ability to switch back to sin was also added
 as previously, clicking would only allow the user to switch both functions to cos.
 
-Principle 2: Conceptual Model? Mapping?
-We felt that SinCreator page differed a lot from the other ShapeCreator pages. Besides the lack of instructions, 
+Principle 2: Conceptual Model
+We felt that Wave Creator page differed a lot from the other ShapeCreator pages. Besides the lack of instructions, 
 the layout was different and a different tool style was used to chose the transform applied to the square 
 (left/right scroll arrows). As such, we decided change the layout of the page to move the 'Your code' section 
 down and add the manipulation section above it. Also, for section 2, we felt that listing all the possible 
 transforms on the shape would be more beneficial as it would fit the organization of the other Shape Creator tabs 
-better and therefore allow the user to use their existing knowledge about the used in Shape Creator on this page as well.
-
+better and therefore allow the user to use their existing knowledge about the used in Shape Creator on this page 
+as well. We even followed the red colour scheme of the page to keep it consistent with the design/colour continuity 
+of the other tabs.
 -}
 
 {-
