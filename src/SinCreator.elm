@@ -2,11 +2,14 @@ module SinCreator exposing (..)
 
 {- 
 
+Note: Please feel free to use these changes in the main ShapeCreator code.
+
 Team Members:
 Mevin Mathew -->  400012057
 Shabana Dhayananth --> 400025944
 
-User: Our user, Toby, is a grade 5 student that has used Elm a few times in previous years for the McMaster Outreach program but is still inexperienced.
+User: Our user, Toby, is a grade 5 student that has used Elm a few times in previous years for the McMaster Outreach 
+program but is still inexperienced.
 
 Activity: Toby wants to design a simple game for this years McMaster Start Coding initiative.
 
@@ -33,9 +36,9 @@ Principle 1: Signifier
 Unlike the other Shape Creator pages, Wave Creator lacked instructions or labels to inform the user 
 about the posisble actions that they could make. In order to make this page more discoverable,
 we added a few signifiers to guide the user. First we included some labels (amplitude, frequency, phase) 
-on the function to indicate what variables could be modified. These labels are the technical terms used to
-teach functions in school and so it will be easy for a high school user to apply their 
-existing knowledge or, for a younger user to google the terms if they need extra information.
+on the function to indicate what variables could be modified. These labels are the technical terms used for 
+trigonometry functions and were included so that a high school student can their knowledge when using this tool. 
+Additionally, younger users can use Google to search what the technical terms mean if they wanted to learn.
 We also added instruction headings to indicate the steps the user could take:
      1. Manipulate the function!
      2. Choose an action!
