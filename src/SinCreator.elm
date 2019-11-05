@@ -43,6 +43,14 @@ Tasks: What tasks are part of this activity
 
 Typical Interaction: Describe a typical interaction of your user (the TAs will test this out, so include sufficient detail)
 
+A user will open the ShapeCreator application and select the WaveCreator tab. From there, they will see step 1 is to "Manipulate the Function",
+and use the three sets of arrows to increase or decrease the Amplitude, Frequency, and Phase of the function respectively. Next, they will identify that
+step 2 is to "Apply Transforms to your Square." At this point, they will select one of 9 applicable transforms for their square (Scale is the 
+default shown by flashing). Lastly, the user will copy their created code from the "Your (copiable) Code!" section and put their generated code into
+their Elm program. A user may also choose to switch the main function from Sin to Cos by selecting the rotated function on the left axis. This will
+automatically switch the main function from Sin to Cos, and change the vertical function from Cos to Sin. The user may click this vertical function
+whenever they need to change the main function between Sin and Cos.
+
 Principle 1: Signifier/Discoverability
 Unlike the other Shape Creator pages, SinCreator lacked instructions or labels to inform the user 
 about the posisble actions that they could make. In order to make this page more discoverable,
@@ -1292,7 +1300,7 @@ view model =
 
         cosLabel =
             group [ text (showDigits 2 model.uScale ++ "*" ++ textTrig cosTrigLabel ++ "(" ++ cosinString model) |> fixedwidth |> size 8 |> filled black |> rotate (degrees 90) |> move ( -110, -82 ) |> notifyTap (TransM (\m -> { m | trigCycleU = cosTrigLabel }))
-                  , text "click here!" |> fixedwidth |> size 6 |> filled (rgba 255 0 0 0.6) |> rotate (degrees 90) |> move ( -125, -75 )
+                  , text "Click Here to Change Function!" |> fixedwidth |> size 6 |> filled (rgba 255 0 0 0.6) |> rotate (degrees 90) |> move ( -125, -75 )
                   , triangle 3 |> filled red |> move ( -119, -63 )
                   , rect 5 1 |> filled red |> move ( -122, -63 )
             ]
