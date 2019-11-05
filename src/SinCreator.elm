@@ -6,8 +6,7 @@ Team Members:
 Mevin Mathew -->  400012057
 Shabana Dhayananth --> 400025944
 
-User: Our user, Toby, is a grade 5 student that has used Elm a few times before
-in a previous year McMaster Outreach program but is still inexperienced.
+User: Our user, Toby, is a grade 5 student that has used Elm a few times in previous years for the McMaster Outreach program but is still inexperienced.
 
 Activity: Toby wants to design a simple game for this years McMaster Start Coding initiative.
 
@@ -50,10 +49,11 @@ We felt that Wave Creator page differed a lot from the other ShapeCreator pages.
 the layout was different and a different tool style was used to chose the transform applied to the square 
 (left/right scroll arrows). As such, we decided change the layout of the page to move the 'Your code' section 
 down and add the manipulation section above it. Also, for section 2, we felt that listing all the possible 
-transforms on the shape would be more beneficial as it would fit the organization of the other Shape Creator tabs 
-better and therefore allow the user to use their existing knowledge about the used in Shape Creator on this page 
-as well. We even followed the red colour scheme of the page to keep it consistent with the design/colour continuity 
-of the other tabs.
+transforms on the shape would be more beneficial as it would fit the model of the other Shape Creator tabs 
+better. This will therefore allow the user to use their prior knowledge about the Shape Creator on this page 
+as well. We also followed the red colour scheme of the page to keep it consistent with the design/colour continuity 
+of the other tabs (Orange --> ShapeCreator, Purple --> TriCreator, Blue --> PolygonCreator, Green --> ArcCreator, 
+Red --> WaveCreator, Teal --> TextCreator).
 -}
 
 {-
