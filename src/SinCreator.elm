@@ -33,15 +33,15 @@ Principle 1: Signifier
 Unlike the other Shape Creator pages, Wave Creator lacked instructions or labels to inform the user 
 about the posisble actions that they could make. In order to make this page more discoverable,
 we added a few signifiers to guide the user. First we included some labels (amplitude, frequency, phase) 
-on the funtion to indicate what variables were could be modified. These labels were likely the ones 
-that the user used in school while learning functions so it will be easy for them to apply their existing 
-knowledge to the simulation. 
+on the function to indicate what variables could be modified. These labels are the technical terms used to
+teach functions in school and so it will be easy for a high school user to apply their 
+existing knowledge or, for a younger user to google the terms if they need extra information.
 We also added instruction headings to indicate the steps the user could take:
      1. Manipulate the function!
      2. Choose an action!
      3. Your copiable code!
 to be consistent with the other pages. And lastly we added a "Click here" sign to indicate that the user 
-could switch the sin/cos equation on the x to y axis and back. The ability to switch back to sin was also added
+could switch the sin/cos equation on the x to y axis and back. The ability to switch back to sin was also added,
 as previously, clicking would only allow the user to switch both functions to cos.
 
 Principle 2: Conceptual Model
